@@ -1,5 +1,5 @@
 <template>
-    <div class="app">
+    <div class="app font-monospace">
         <div class="content">
             <AppInfo />
             <div class="search-panel">
@@ -46,6 +46,7 @@
 
     .search-panel {
         margin-top: 2rem;
+        margin-bottom: 2rem;
         padding: 1.5rem;
         background-color: #fcfaf5;
         border-radius: 4px;
