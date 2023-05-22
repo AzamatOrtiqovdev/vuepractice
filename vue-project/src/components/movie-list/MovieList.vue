@@ -1,8 +1,6 @@
 <template>
       <ul class="list-group movie-list">
-            <MovieListItem />
-            <MovieListItem />
-            <MovieListItem />
+            <MovieListItem v-for="movie in movies" v-bind:movie="movie"/>
       </ul>
 </template>
 
@@ -10,7 +8,13 @@
       import MovieListItem from '@/components/movie-list-item/MovieListItem.vue';
 
       export default {
-            components: { MovieListItem }
+            components: { MovieListItem },
+            props: {
+                  movies: {
+                        type: Array,
+                        required: true
+                  }
+            }
       }
 </script>
 

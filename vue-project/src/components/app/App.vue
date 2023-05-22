@@ -1,12 +1,13 @@
 <template>
     <div class="app font-monospace">
         <div class="content">
-            <AppInfo />
+            <AppInfo :allMoviesCount="movies.length" 
+            :favouriteMoviesCount="movies.filter(movie => movie.favourite).length"/>
             <div class="search-panel">
                 <SearchPanel />
                 <AppFilter />
             </div>
-            <MovieList />
+            <MovieList :movies="movies"/>
             <MovieAddForm />        
         </div>
     </div>
@@ -20,13 +21,37 @@
     import MovieAddForm from '@/components/movie-add-form/MovieAddForm.vue';
 
     export default {
-      components: {
-        AppInfo,
-        SearchPanel,
-        AppFilter,
-        MovieList,
-        MovieAddForm
-    }
+        components: {
+            AppInfo,
+            SearchPanel,
+            AppFilter,
+            MovieList,
+            MovieAddForm
+        },
+        data() {
+                  return {
+                        movies: [
+                              {
+                                    name: "John Wick 1",
+                                    viewers: 755,
+                                    like: true,
+                                    favourite: false
+                              },
+                              {
+                                    name: "John Wick 2",
+                                    viewers: 578,
+                                    like: false,
+                                    favourite: false
+                              },
+                              {
+                                    name: "John Wick 3",
+                                    viewers: 821,
+                                    like: false,
+                                    favourite: true
+                              }
+                        ]
+                  }
+            }
     }
 </script>
 
