@@ -7,8 +7,8 @@
                 <SearchPanel />
                 <AppFilter />
             </div>
-            <MovieList :movies="movies"/>
-            <MovieAddForm />        
+            <MovieList :movies="movies" @onLike = "onLikeHandler"/>
+            <MovieAddForm @createMovie="createMovie"/>        
         </div>
     </div>
 </template>
@@ -35,22 +35,38 @@
                                     name: "John Wick 1",
                                     viewers: 755,
                                     like: true,
-                                    favourite: false
+                                    favourite: false,
+                                    id: 1
                               },
                               {
                                     name: "John Wick 2",
                                     viewers: 578,
                                     like: false,
-                                    favourite: false
+                                    favourite: false,
+                                    id: 2
                               },
                               {
                                     name: "John Wick 3",
                                     viewers: 821,
                                     like: false,
-                                    favourite: true
+                                    favourite: true,
+                                    id: 3
                               }
                         ]
                   }
+            },
+            methods: {
+                createMovie(item) {
+                    this.movies.push(item)
+                },
+                onLikeHandler(id) {
+                    this.movies = this.movies.map(item => {
+                        if(item.id === id){
+                            item.like = !item.like
+                        }
+                        return item
+                    })
+                }
             }
     }
 </script>

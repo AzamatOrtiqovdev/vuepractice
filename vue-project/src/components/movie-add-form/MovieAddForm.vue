@@ -1,17 +1,50 @@
 <template>
       <div class="movie-add-form">
             <h3>Yangi Kino qo'shish</h3>
-            <form class="add-form d-flex">
-                  <input type="text" class="form-control new-movie-label" placeholder="Qanday kino?">
-                  <input type="text" class="form-control new-movie-label" placeholder="Nechi marotaba ko'rilgan?">
+            <form class="add-form d-flex" @submit.prevent>
+                  <input 
+                        type="text" 
+                        class="form-control new-movie-label" 
+                        placeholder="Qanday kino?"
+                        :value="name"
+                        @input="name = $event.target.value"
+                  >
+                  <input 
+                        type="text" 
+                        class="form-control new-movie-label" 
+                        placeholder="Nechi marotaba ko'rilgan?"
+                        :value="viewers"
+                        @input="viewers = $event.target.value"
+                  >
 
-                  <button class="btn btn-outline-dark" type="submit">Qo'shish</button>
+                  <button class="btn btn-outline-dark" type="submit" @click="addMovie">Qo'shish</button>
             </form>
       </div>
 </template>
 
 <script> 
       export default {
+            data() {
+                  return {
+                        name: "",
+                        viewers: ""
+                  }
+            },
+            methods: {
+                  addMovie() {
+                        // e.preventDefault()
+                        const newMovie = {
+                              name: this.name,
+                              viewers: this.viewers,
+                              like: false,
+                              favourite: false,
+                              id: Date.now()
+                        }
+                        this.$emit("createMovie", newMovie)
+                        this.name = ""
+                        this.viewers = ""
+                  }
+            }
 
       }
 </script>

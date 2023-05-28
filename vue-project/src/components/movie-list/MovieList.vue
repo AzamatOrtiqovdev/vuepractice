@@ -1,6 +1,11 @@
 <template>
       <ul class="list-group movie-list">
-            <MovieListItem v-for="movie in movies" v-bind:movie="movie"/>
+            <MovieListItem 
+                  v-for="movie in movies" 
+                  v-bind:movie="movie" 
+                  :key="movie.id" 
+                  @onLike="$emit('onLike', movie.id)"
+            />
       </ul>
 </template>
 
