@@ -5,9 +5,9 @@
             :favouriteMoviesCount="movies.filter(movie => movie.favourite).length"/>
             <div class="search-panel">
                 <SearchPanel :updateTermHandler="updateTermHandler"/>
-                <AppFilter />
+                <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter"/>
             </div>
-            <MovieList :movies="onSearchHandler(movies, term)" @onToggle="onToggleHandler" @onRemove="onRemoveHandler"/>
+            <MovieList :movies="onFilterHandler(onSearchHandler(movies, term), filter)" @onToggle="onToggleHandler" @onRemove="onRemoveHandler"/>
             <MovieAddForm @createMovie="createMovie"/>        
         </div>
     </div>
@@ -53,13 +53,15 @@
                                     id: 3
                               }
                         ],
-                        term: ""
+                        term: "",
+                        filter: "all"
                   }
             },
             methods: {
                 createMovie(item) {
                     this.movies.push(item)
                 },
+
                 onToggleHandler({id, prop}) {
                     this.movies = this.movies.map(item => {
                         if(item.id == id) {
@@ -68,9 +70,11 @@
                         return item
                     })
                 },
+
                 onRemoveHandler(id) {
                     this.movies = this.movies.filter(c => c.id != id)
                 },
+
                 onSearchHandler(arr, term) {
                     if(term.length == 0) {
                         return arr
@@ -78,8 +82,24 @@
 
                     return arr.filter(c => c.name.toLowerCase().indexOf(term) > -1)
                 },
+
                 updateTermHandler(term){
                     this.term = term
+                },
+
+                onFilterHandler(arr, filter) {
+                    switch(filter) {
+                        case 'popular':
+                            return arr.filter(c => c.like)
+                        case 'mostViewers':
+                            return arr.filter(c => c.viewers > 500)
+                        default:
+                            return arr
+                    }
+                },
+
+                updateFilterHandler(filter) {
+                    this.filter = filter
                 }
             } 
     }
