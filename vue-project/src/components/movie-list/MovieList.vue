@@ -4,7 +4,7 @@
                   v-for="movie in movies" 
                   v-bind:movie="movie" 
                   :key="movie.id" 
-                  @onLike="$emit('onLike', movie.id)"
+                  @onToggle="$emit('onToggle', $event)"
             />
       </ul>
 </template>
