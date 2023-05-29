@@ -17,12 +17,13 @@
                         @input="viewers = $event.target.value"
                   >
 
-                  <button class="btn btn-outline-dark" type="submit" @click="addMovie">Qo'shish</button>
+                  <PrimaryButton class="btn-outline-dark" type="submit" @click="addMovie">Qo'shish</PrimaryButton>
             </form>
       </div>
 </template>
 
 <script> 
+      
       export default {
             data() {
                   return {

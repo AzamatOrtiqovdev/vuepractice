@@ -1,14 +1,13 @@
 <template>
       <div class="btn-group">
-            <button 
-                  class="btn" 
+            <PrimaryButton 
                   v-for="btn in filterButtons" 
                   :key="btn.name" 
                   :class="[filter == btn.name ? 'btn-dark':'btn-outline-dark']"
                   @click="filterHandler(btn.name)"
             >
                   {{ btn.title }}
-            </button>
+            </PrimaryButton>
       </div>
 </template>
 
