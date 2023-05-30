@@ -1,25 +1,26 @@
 <template>
-      <div class="movie-add-form">
+      <Box class="movie-add-form">
             <h3>Yangi Kino qo'shish</h3>
             <form class="add-form d-flex" @submit.prevent>
-                  <input 
+                  <Input 
                         type="text" 
-                        class="form-control new-movie-label" 
+                        class="new-movie-label" 
                         placeholder="Qanday kino?"
                         :value="name"
                         @input="name = $event.target.value"
-                  >
-                  <input 
+                  />
+
+                  <Input 
                         type="text" 
-                        class="form-control new-movie-label" 
+                        class="new-movie-label" 
                         placeholder="Nechi marotaba ko'rilgan?"
                         :value="viewers"
                         @input="viewers = $event.target.value"
-                  >
+                  />
 
                   <PrimaryButton class="btn-outline-dark" type="submit" @click="addMovie">Qo'shish</PrimaryButton>
             </form>
-      </div>
+      </Box>
 </template>
 
 <script> 
